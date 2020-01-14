@@ -1,3 +1,4 @@
+require("dotenv/config");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -12,13 +13,10 @@ const app = express();
 const server = http.Server(app);
 const io = socketio(server);
 
-mongoose.connect(
-  "mongodb+srv://oministack:oministack@oministack-oexto.mongodb.net/semana_09?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+mongoose.connect(process.env.MONGO_DB_STRING_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const connectedUsers = {};
 
